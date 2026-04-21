@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.db import init_db
 from app.deps import require_api_key
-from app.routers import loads
+from app.routers import carriers, loads
 
 app = FastAPI(title="Carrier Sales API", version="0.1.0")
 
@@ -27,3 +27,4 @@ def healthz():
 
 
 app.include_router(loads.router, dependencies=[Depends(require_api_key)])
+app.include_router(carriers.router, dependencies=[Depends(require_api_key)])
