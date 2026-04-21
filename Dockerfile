@@ -1,3 +1,14 @@
+FROM node:20-alpine AS web
+
+WORKDIR /web
+
+COPY web/package*.json ./
+RUN npm ci
+
+COPY web ./
+RUN npm run build
+
+
 FROM python:3.12-slim AS api
 
 WORKDIR /app
@@ -12,7 +23,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 COPY scripts ./scripts
 
-RUN mkdir -p data && python -m scripts.seed_loads
+COPY --from=web /web/out ./web_static
+
+RUN mkdir -p /data
 
 EXPOSE 8080
 

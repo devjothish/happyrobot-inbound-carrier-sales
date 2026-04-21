@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0c0e;
+  --panel: #14161a;
+  --border: #23262c;
+  --text: #e6e7eb;
+  --muted: #8b8f98;
+  --accent: #7dd3fc;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans, Inter, system-ui, sans-serif);
+  font-feature-settings: "ss01", "cv11";
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.metric-big {
+  font-family: var(--font-mono, JetBrains Mono, ui-monospace, monospace);
+  font-size: 2.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

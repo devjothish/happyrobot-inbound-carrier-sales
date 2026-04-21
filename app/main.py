@@ -1,5 +1,9 @@
+import os
+from pathlib import Path
+
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.db import init_db
@@ -19,6 +23,19 @@ app.add_middleware(
 @app.on_event("startup")
 def _startup() -> None:
     init_db()
+    _ensure_seed()
+
+
+def _ensure_seed() -> None:
+    """If loads table is empty (first boot on a fresh volume), seed it."""
+    from app.db import SessionLocal
+    from app.models import Load
+
+    with SessionLocal() as db:
+        if db.query(Load).count() == 0:
+            from scripts.seed_loads import seed
+
+            seed()
 
 
 @app.get("/healthz")
@@ -30,3 +47,8 @@ app.include_router(loads.router, dependencies=[Depends(require_api_key)])
 app.include_router(carriers.router, dependencies=[Depends(require_api_key)])
 app.include_router(calls.router, dependencies=[Depends(require_api_key)])
 app.include_router(metrics.router, dependencies=[Depends(require_api_key)])
+
+
+_static_dir = Path(os.environ.get("STATIC_DIR", "web_static"))
+if _static_dir.exists():
+    app.mount("/", StaticFiles(directory=str(_static_dir), html=True), name="web")
