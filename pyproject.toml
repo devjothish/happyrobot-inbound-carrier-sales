@@ -1,0 +1,21 @@
+[project]
+name = "carrier-sales-api"
+version = "0.1.0"
+description = "Inbound carrier sales API + dashboard (HappyRobot FDE take-home)"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: hits real external services (FMCSA); skipped by default",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
