@@ -3,15 +3,17 @@ import os
 import pytest
 from fastapi.testclient import TestClient
 
-os.environ.setdefault("API_KEY", "test-key")
-os.environ.setdefault("FMCSA_WEBKEY", "test-fmcsa-key")
-os.environ.setdefault("DATABASE_URL", "sqlite:///:memory:")
+os.environ["API_KEY"] = "test-key"
+os.environ["FMCSA_WEBKEY"] = "test-fmcsa-key"
+os.environ.setdefault("DATABASE_URL", "sqlite:///./data/test.db")
 
 
 @pytest.fixture
 def client():
+    from app.db import init_db
     from app.main import app
 
+    init_db()
     return TestClient(app)
 
 
