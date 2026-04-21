@@ -2,7 +2,8 @@
 
 HappyRobot FDE take-home. A web-call inbound carrier sales agent for freight brokers, with FMCSA MC verification, deterministic 3-round rate negotiation, and a broker-facing dashboard.
 
-- **Live dashboard:** _to be added after deploy_
+- **Live dashboard:** https://carrier-sales-jo.fly.dev
+- **Live API docs:** https://carrier-sales-jo.fly.dev/docs
 - **HappyRobot workflow:** `platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038`
 - **Video walkthrough:** _to be added_
 
