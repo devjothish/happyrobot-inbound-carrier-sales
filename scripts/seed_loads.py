@@ -77,18 +77,22 @@ def build_loads(n: int = 50) -> list[Load]:
         delivery = pickup + timedelta(hours=transit_hours)
         weight = random.randint(15000, max_weight)
         pieces = random.choice([1, 2, 4, 8, 12, 16, 22, 26])
-        notes = random.choice(
-            [
-                "Dock high delivery",
-                "Driver assist requested",
-                "Temp 34F - reefer continuous",
-                "No touch freight",
-                "Team driver preferred",
-                "",
-                "Tarps required",
-                "",
-            ]
-        ) if equip_type != "Reefer" else "Temp 34F - reefer continuous"
+        notes = (
+            random.choice(
+                [
+                    "Dock high delivery",
+                    "Driver assist requested",
+                    "Temp 34F - reefer continuous",
+                    "No touch freight",
+                    "Team driver preferred",
+                    "",
+                    "Tarps required",
+                    "",
+                ]
+            )
+            if equip_type != "Reefer"
+            else "Temp 34F - reefer continuous"
+        )
         loads.append(
             Load(
                 load_id=f"LD-{i + 1:06d}",

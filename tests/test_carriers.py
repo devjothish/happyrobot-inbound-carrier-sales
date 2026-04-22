@@ -98,9 +98,9 @@ def test_verify_refetches_after_24h(authed_client):
         c.fetched_at = datetime.utcnow() - timedelta(hours=25)
         db.commit()
 
-    route2 = respx.get(
-        "https://mobile.fmcsa.dot.gov/qc/services/carriers/docket-number/1515"
-    ).mock(return_value=httpx.Response(200, json=_mock_payload()))
+    route2 = respx.get("https://mobile.fmcsa.dot.gov/qc/services/carriers/docket-number/1515").mock(
+        return_value=httpx.Response(200, json=_mock_payload())
+    )
     authed_client.get("/carriers/verify?mc=1515")
     assert route2.called
 

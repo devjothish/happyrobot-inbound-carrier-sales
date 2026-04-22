@@ -43,9 +43,7 @@ def get_metrics(db: Session = Depends(get_db)):
 
     verified = sum(1 for c in calls if c.outcome not in ("carrier_ineligible",) and c.carrier_name)
     ineligible = sum(1 for c in calls if c.outcome == "carrier_ineligible")
-    not_found = sum(
-        1 for c in calls if c.outcome == "error" and not c.carrier_name and c.mc_number
-    )
+    not_found = sum(1 for c in calls if c.outcome == "error" and not c.carrier_name and c.mc_number)
     mc_funnel = {"verified": verified, "ineligible": ineligible, "not_found": not_found}
 
     crosstab: dict[tuple[str, str], int] = defaultdict(int)
