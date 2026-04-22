@@ -138,3 +138,28 @@ def test_loads_get_by_id(authed_client):
 def test_loads_get_missing_returns_404(authed_client):
     r = authed_client.get("/loads/LD-DOES-NOT-EXIST")
     assert r.status_code == 404
+
+
+def test_loads_search_by_reference_number_exact_match(authed_client):
+    r = authed_client.get("/loads/search?reference_number=LD-TEST002")
+    assert r.status_code == 200
+    loads = r.json()["loads"]
+    assert len(loads) == 1
+    assert loads[0]["load_id"] == "LD-TEST002"
+
+
+def test_loads_search_reference_number_overrides_other_filters(authed_client):
+    # Even with a conflicting equipment_type filter, reference_number wins.
+    r = authed_client.get(
+        "/loads/search?reference_number=LD-TEST001&equipment_type=Flatbed"
+    )
+    assert r.status_code == 200
+    loads = r.json()["loads"]
+    assert len(loads) == 1
+    assert loads[0]["load_id"] == "LD-TEST001"
+
+
+def test_loads_search_unknown_reference_number_returns_empty(authed_client):
+    r = authed_client.get("/loads/search?reference_number=LD-NOT-REAL")
+    assert r.status_code == 200
+    assert r.json()["loads"] == []
