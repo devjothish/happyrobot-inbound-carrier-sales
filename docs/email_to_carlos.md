@@ -13,7 +13,7 @@ Shipping the inbound carrier sales take-home. Live at https://carrier-sales-jo.f
 Deliverables:
 
 - **Dashboard:** https://carrier-sales-jo.fly.dev *(use the X-API-Key in the API doc; I can also share directly if easier)*
-- **Workflow:** https://platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038
+- **Workflow:** https://platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038/editor/nidou0lef3no
 - **Repo (public):** https://github.com/devjothish/happyrobot-inbound-carrier-sales
 - **Build doc** *(framed as an "Acme Logistics" handoff):* `docs/ACME_LOGISTICS_BUILD.md` in the repo
 - **5-min walkthrough:** <LOOM_URL>

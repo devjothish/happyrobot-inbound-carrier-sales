@@ -4,7 +4,7 @@ HappyRobot FDE take-home. A web-call inbound carrier sales agent for freight bro
 
 - **Live dashboard:** https://carrier-sales-jo.fly.dev
 - **OpenAPI docs:** https://carrier-sales-jo.fly.dev/docs
-- **HappyRobot workflow:** `platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038`
+- **HappyRobot workflow:** https://platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038/editor/nidou0lef3no
 - **Build doc (Acme Logistics handoff):** [`docs/ACME_LOGISTICS_BUILD.md`](docs/ACME_LOGISTICS_BUILD.md)
 - **Video walkthrough:** _added on submission_
 

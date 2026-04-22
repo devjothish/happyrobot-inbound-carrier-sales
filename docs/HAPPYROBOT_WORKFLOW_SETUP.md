@@ -2,7 +2,7 @@
 
 20-minute click-through to wire the `Inbound Carrier Sales New` workflow up to the deployed API.
 
-**Workflow URL:** `https://platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038`
+**Workflow URL:** https://platform.happyrobot.ai/fdejothiswaranarumugam/workflows/5jlf1pmyz038/editor/nidou0lef3no
 **Deployed API:** `https://carrier-sales-jo.fly.dev`
 **API key:** in `.env.local` (copy with: `grep '^API_KEY=' .env.local | cut -d= -f2- | pbcopy`)
 
