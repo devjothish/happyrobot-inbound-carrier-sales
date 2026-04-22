@@ -139,6 +139,10 @@ Ranked by impact-to-effort:
 
 ## Known cuts (non-goals for v1)
 
+- **Reference-number lookup.** PDF's conversation flow has two paths (ref number → direct lookup, or fallback → lane + equipment search). Only the second is wired today. Lane-based is the dominant real-world pattern per the PDF itself; ref-number lookup is a 15-minute addition (`load_id` optional filter on `/loads/search`).
+
+
+
 - **User auth / multi-tenant.** One broker, one key. Good enough to demo. JWT + orgs is a week we don't have and don't need yet.
 - **Real phone numbers.** PDF says web call only. Twilio/HappyRobot handle the SIP pivot when ready.
 - **CI/CD pipeline.** One engineer, manual deploys fine. Reproducible via `deploy.sh`.
