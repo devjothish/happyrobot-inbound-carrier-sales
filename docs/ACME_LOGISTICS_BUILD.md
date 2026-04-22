@@ -78,6 +78,26 @@ Round 3 (final):
 
 These rules live in the agent's prompt today. **Why in the prompt and not a pricing service?** Because it's a POC, because the rules are 10 lines, and because Carlos is testing whether I can ship, not whether I can over-engineer. Next iteration (see below) replaces this with a pricing engine.
 
+## Platform vs. self-hosted - where the line sits
+
+A meaningful FDE decision on this build was **where to draw the line between HappyRobot platform primitives and our own code**. The platform already ships:
+
+- FMCSA MC validator (managed AWS endpoint with its own API key, retries, 5xx handling)
+- Classify and Extract as native AI nodes
+- Webhook runtime with variable interpolation
+
+The right call was to **use every one of those**. Reinventing them would be working against the platform. So:
+
+| Capability | Provider | Rationale |
+|---|---|---|
+| MC verification | HappyRobot's managed FMCSA endpoint | Already authed, cached, retried. No reason to duplicate. |
+| Call classification | Native Classify node | Trained for voice transcripts, better than anything we'd roll in a day. |
+| Structured extraction | Native Extract node | Same reason. |
+| Load search + pricing data | **Our API** | PDF scopes this to us explicitly ("file or DB") - broker-specific data. |
+| Call persistence + dashboard | **Our API + Next.js** | Product vision deliverable - custom is required. |
+
+Note: the repo includes a `/carriers/verify` endpoint that proxies FMCSA ourselves. I built it before discovering the platform already provides this. It's retained as evidence of capability and as a fallback if Acme ever wanted to self-host the validator (e.g. air-gapped deployment), but the live workflow uses HappyRobot's endpoint. This is the FDE call - build what's differentiated, use what's commodity.
+
 ## Integration surface
 
 Five endpoints. One static API key in `X-API-Key`. That's the whole auth model.
